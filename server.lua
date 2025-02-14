@@ -73,21 +73,24 @@ local function cleanupVehicles()
 
     -- Sử dụng ox_lib để hiển thị thông báo
     TriggerClientEvent('ox_lib:notify', -1, {
-        title = 'Dọn Dẹp Phương Tiện',
+        title = 'DỌN DẸP PHƯƠNG TIỆN',
         description = ('Đã xóa %s phương tiện không hợp lệ!'):format(deletedCount),
-        type = 'success'
+        type = 'success',
+        position = 'center-right',
     })
 end
 
 -- Thông báo trước khi dọn dẹp phương tiện
 local function announceCleanup()
-    local times = {30, 10, 5, 3, 1} 
+    local times = {15, 10, 5, 4, 3, 2, 1} 
     for _, t in ipairs(times) do
         Citizen.SetTimeout((Config.CleanupInterval - (t * 60000)), function()
             TriggerClientEvent('ox_lib:notify', -1, {
-                title = 'Cảnh Báo Dọn Dẹp',
+                title = '🧹CẢNH BẢO DỌN DẸP',
                 description = ('Dọn dẹp phương tiện trong %s phút!'):format(t),
-                type = 'warning'
+                type = 'warning',
+                position = 'center-right',
+                duration = 50000, -- Thời gian hiển thị 50 giây
             })
         end)
     end
